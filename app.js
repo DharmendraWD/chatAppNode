@@ -1,4 +1,4 @@
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require("uuid");
 const http = require("http");
 const express = require("express");
 const { Server } = require("socket.io");
@@ -35,6 +35,11 @@ const chatNameSpace = io.of("/chat");
 chatNameSpace.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
+  // Handle reactions
+  socket.on("react", (data) => {
+    chatNameSpace.to(data.roomNumber).emit("reaction", data);
+  });
+
   // Listening
   socket.on("disconnect", () => {
     const index = users.findIndex((s) => s.id == socket.id);
@@ -43,31 +48,29 @@ chatNameSpace.on("connection", (socket) => {
     console.log("User Disconnected");
   });
 
+  // Handle chat messages
+  socket.on("chat message", (data) => {
+    const date = new Date();
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    if (+hours <= 9) hours = `0${hours}`;
+    if (+minutes <= 9) minutes = `0${minutes}`;
+    data.date = `${hours}:${minutes}`;
+    data.messageId = uuidv4(); // Ensure unique ID for each message
+    chatNameSpace.to(data.roomNumber).emit("chat message", data);
+  });
 
-// Handle chat messages
-socket.on("chat message", (data) => {
-  const date = new Date();
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
-  if (+hours <= 9) hours = `0${hours}`;
-  if (+minutes <= 9) minutes = `0${minutes}`;
-  data.date = `${hours}:${minutes}`;
-  data.messageId = uuidv4(); // Ensure unique ID for each message
-  chatNameSpace.to(data.roomNumber).emit("chat message", data);
-});
-
-// Handle image messages
-socket.on("sendImage", (data) => {
-  const date = new Date();
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
-  if (+hours <= 9) hours = `0${hours}`;
-  if (+minutes <= 9) minutes = `0${minutes}`;
-  data.date = `${hours}:${minutes}`;
-  data.messageId = uuidv4(); // Ensure unique ID for each image message
-  chatNameSpace.to(data.roomNumber).emit("image message", data);
-});
-
+  // Handle image messages
+  socket.on("sendImage", (data) => {
+    const date = new Date();
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    if (+hours <= 9) hours = `0${hours}`;
+    if (+minutes <= 9) minutes = `0${minutes}`;
+    data.date = `${hours}:${minutes}`;
+    data.messageId = uuidv4(); // Ensure unique ID for each image message
+    chatNameSpace.to(data.roomNumber).emit("image message", data);
+  });
 
   socket.on("typing", (data) => {
     socket.broadcast
