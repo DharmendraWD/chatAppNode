@@ -1,0 +1,187 @@
+
+
+body {
+  font-family:  "Dosis", sans-serif;
+
+  background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)), url('./journal-2850091_1280.jpg');
+  background-size: cover; /* Ensures the image covers the entire viewport */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-attachment: fixed; /* Keeps the background image fixed while scrolling */
+  margin: 0;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* .container-fluid {
+    height: 100vh !important;
+} */
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+
+/* Styling for the trigger button */
+.sendBtn {
+    background-color: #1c64b600;
+    color: white;
+    border: none;
+    padding: 6px 11px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 1; /* Ensure this button is on top */
+}
+
+/* Styling for the sliding button */
+.pUnderBtn{
+    background-color: #0b5ed7;
+    color: white;
+    border: none;
+    /* padding: 15px 30px; */
+    font-size: 16px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    right: -50px; /* Start off-screen to the right */
+    transition: right 0.2s ease; /* Smooth transition for sliding effect */
+    z-index: 99999999 !important;
+}
+
+.msgBox{
+    border-bottom: 1px solid #ededed30;
+      display: flex;
+    flex-direction: column;
+}
+/* #chatContainer{
+  background-image: linear-gradient(to top, #9f6c32, #70e7ff);
+} */
+.whiteClr{
+  color: white;
+}
+.message-content{
+    max-width: fit-content;
+        border-radius: 13px;
+        background: #d7d7d740;
+        color:#cdfff4;
+    padding: 2px 12px !important;
+}
+.nameDateBg{
+      /* background: linear-gradient(rgb(13 14 14 / 70%), rgb(41 40 77 / 90%)), url(images/2.jpg); */
+          padding: 0 1px 3px 11px;
+          width: max-content;
+}
+.pzero{
+    color: white;
+}
+.navParent{
+  border-bottom: 1px solid #f7fcff6b;
+    padding: 13px 3px;
+}
+#messageInput{
+  background-color: transparent !important;
+  color: white;
+      border: none;
+    border-bottom: 1px solid #ffffff73;
+}
+
+input::placeholder {
+            color: rgb(255, 255, 255) !important; /* Change this to your desired color */
+            opacity: 1;  /* Ensures that the placeholder color is fully opaque */
+            transition: .4s ease-in-out;
+        }
+
+        /* Optional: You can also customize the placeholder color for different states like focus */
+        input:focus::placeholder {
+            color: rgb(112, 109, 109) !important; /* Change this to your desired color when focused */
+        }
+
+.upperOnUser{
+  border-radius: 0px !important;
+  border: none !important;
+  border-right: 1px solid !important;
+    padding: 0 6px !important;
+    background-color: transparent  !important;
+    color: white !important;
+    padding: 1px 3px !important;
+
+}
+.replyBg{
+        background: #efc2e726;
+      color: white;
+        max-width: fit-content;
+        border-radius: 6px;
+    padding: 2px 12px !important;
+        margin-left: 54px;
+    margin-bottom: 2px;
+}
+.ri-user-line{
+  color: #13ff27ab;
+}
+.ri-chat-1-line{
+  color: #057eff;
+}
+.ri-chat-3-line{
+  color: #ff7b05a3;
+}
+#sendImageButton{
+  background-color: transparent !important;
+  border: none !important;
+}
+.replyBtn{
+      width: min-content;
+      /* From Uiverse.io by pipic1 */ 
+  --key-text-color: #969faf;
+  border-radius: 3px;
+  box-shadow: var(--docsearch-key-shadow);
+  color: var(--key-text-color);
+  cursor: pointer;
+      margin-top: 4px;
+  text-align: center;
+  display: inline-block;
+  font-weight: bold;
+  user-select: none;
+  position: absolute;
+    right: 146px;
+    bottom: 0px;
+    background: transparent;
+    height: 29px;
+    border: none !important;
+
+}
+.replyto{
+  color: #b0e5ff;
+}
+
+
+
+/* CSS for viewports 700px and below */
+@media (max-width: 800px) {
+  #chatForm {
+    width: 95% !important;
+  }
+}
+
