@@ -1,10 +1,7 @@
-/* src/styles.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-
-
+html, body{
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
 
 body {
   font-family:  "Dosis", sans-serif;
@@ -48,7 +45,13 @@ body {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-
+.chatfrmParent{
+  position: fixed;
+  left: 0;
+  bottom: 17px;
+  right: 0;
+  z-index: 1030;
+}
 
 /* Styling for the trigger button */
 .sendBtn {
@@ -188,12 +191,7 @@ input::placeholder {
   color: white;
 }
 
-/* CSS for viewports 700px and below */
-@media (max-width: 800px) {
-  #chatForm {
-    width: 95% !important;
-  }
-}
+
 
 /* react  */
  .emoji-dropdown {
@@ -246,3 +244,19 @@ input::placeholder {
     color: white;
     font-size: 22px;
   }
+
+
+
+  /* CSS for viewports 700px and below */
+@media (max-width: 1000px) {
+  #chatForm {
+    width: 95% !important;
+  }
+  .chatfrmParent{
+      /* bottom: 50%; */
+  }
+  #messageInput{
+    max-width: 200px;
+    box-sizing: border-box;
+  }
+}
