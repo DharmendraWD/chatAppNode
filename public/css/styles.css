@@ -246,9 +246,6 @@ input::placeholder {
     color: #e1ff00;
     font-size: 22px;
   }
-#chatContainer{
-  border: 1px solid red;
-}
 #online-users-list{
   padding: 0 !important;
 }
