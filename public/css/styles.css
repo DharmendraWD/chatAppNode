@@ -5,7 +5,6 @@ html, body{
 
 body {
   font-family:  "Dosis", sans-serif;
-
   background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)), url('./journal-2850091_1280.jpg');
   background-size: cover; /* Ensures the image covers the entire viewport */
   background-position: center; /* Centers the image */
@@ -48,7 +47,7 @@ body {
 .chatfrmParent{
   position: fixed;
   left: 0;
-  bottom: 17px;
+  bottom: 0px;
   right: 0;
   z-index: 1030;
 }
@@ -81,7 +80,7 @@ body {
 }
 
 .msgBox{
-    border-bottom: 1px solid #ededed30;
+    border-bottom: 1px solid#ededede0;
       display: flex;
     flex-direction: column;
 }
@@ -97,6 +96,8 @@ body {
         background: #d7d7d740;
         color:#cdfff4;
     padding: 2px 12px !important;
+    text-align: justify;
+        border-radius: 10px;
 }
 .nameDateBg{
       /* background: linear-gradient(rgb(13 14 14 / 70%), rgb(41 40 77 / 90%)), url(images/2.jpg); */
@@ -239,24 +240,97 @@ input::placeholder {
 
   .react-btn{
         width: fit-content;
+        border-radius: 0 14px 0 18px;
   }
   .reaction{
-    color: white;
+    color: #e1ff00;
     font-size: 22px;
   }
+#chatContainer{
+  border: 1px solid red;
+}
+#online-users-list{
+  padding: 0 !important;
+}
+.row{
+  justify-content: center !important;
+}
 
+.navParent {
+  padding: 0 !important;
+    max-height: 45px;
+}
+
+
+/* ----------- */
 
 
   /* CSS for viewports 700px and below */
-@media (max-width: 1000px) {
+@media (max-width: 800px) {
   #chatForm {
     width: 95% !important;
   }
   .chatfrmParent{
-      /* bottom: 50%; */
+background-color: #000014;
+padding: 0 !important;
   }
-  #messageInput{
-    max-width: 200px;
-    box-sizing: border-box;
+  #chat-box{
+        padding-bottom: 12px;
+margin-top: 0px !important;
+padding-left: 0;
   }
+  .msgBox{
+        margin: 3px 0 0 0;
+            border: 1px solid #d8fdff;
+    border-radius: 3px 19px;
+    padding-top: 2px !important;
+      padding-right: 5px;
+    padding-left: 5px !important
+  }
+  .pzero {
+        margin-bottom: 2px;
+  }
+  .react-btn{
+    padding: 0 7px;
+    line-height: 1;
+  }
+  .nameDateBg {
+        font-size: 10pt;
+        border-radius: 0px 15px;
+                background-color: #000000;
+                    padding: 0 2px;
+  }
+  .time{
+    font-size: 8pt;
+  }
+  .replyBtn{
+        position: absolute;
+    right: 0;
+  }
+  .msgBox{
+      margin-bottom: 7px;
+      position: relative;
+    padding-bottom: 21px;
+}
+#chatContainer{
+      padding-left: 4px;
+    padding-right: 4px;
+}
+.message-content {
+    padding: 0px 6px !important;
+}
+.react-btn{
+      position: absolute;
+    left: 0;
+    bottom: 4px;
+}
+.container-fluid{
+padding: 0 !important;
+}
+.upperOnUser {
+  line-height: 1;
+}
+.navParent{
+  background-color:  #000014;
+}
 }

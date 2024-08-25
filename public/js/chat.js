@@ -4,6 +4,8 @@ const chatNamespace = io("/chat", {
   },
 });
 
+
+
 // Query DOM
 const messageInput = document.getElementById("messageInput");
 const chatForm = document.getElementById("chatForm");
@@ -103,10 +105,10 @@ chatNamespace.on("chat message", (data) => {
           </div>`
     : "";
   chatBox.innerHTML += `<li class="alert msgBox" data-message-id="${data.messageId}">
-                            <span class="nameDateBg whiteClr font-weight-normal" style="font-size: 14pt">
+                            <span class="nameDateBg whiteClr font-weight-normal" style="font-size: 12pt">
                             <i class="ri-user-line"></i>
                             ${data.nickname}
-                            <span class="whiteClr font-italic font-weight-light m-2" style="font-size: 11pt">${data.date} 
+                            <span class="whiteClr font-italic font-weight-light m-2 time">${data.date} 
                             <i class="ri-time-line"></i>
                             </span>
                             </span>
@@ -145,11 +147,11 @@ chatNamespace.on("image message", (data) => {
       </div>`
     : "";
   chatBox.innerHTML += `<li class="alert msgBox" data-message-id="${data.messageId}">
-                            <span class="whiteClr nameDateBg  font-weight-normal" style="font-size: 13pt">
+                            <span class="whiteClr nameDateBg  font-weight-normal">
                             <i class="ri-user-line"></i>
                             
                             ${data.nickname}
-                            <span class="whiteClr font-italic font-weight-light m-2" style="font-size: 9pt">${data.date} 
+                            <span class="whiteClr font-italic font-weight-light m-2 time">${data.date} 
                             <i class="ri-time-line"></i>
                             </span>
                             </span>
@@ -188,9 +190,9 @@ chatNamespace.on("image message", (data) => {
 
   const messageElement = `
     <li class="alert msgBox" data-message-id="${data.messageId}">
-      <span class="whiteClr nameDateBg font-weight-normal" style="font-size: 13pt">
+      <span class="whiteClr nameDateBg font-weight-normal" >
         <i class="ri-user-line"></i> ${data.nickname}
-        <span class="whiteClr font-italic font-weight-light m-2" style="font-size: 9pt">${data.date} 
+        <span class="whiteClr time font-italic font-weight-light m-2" >${data.date} 
         <i class="ri-time-line"></i>
         </span>
       </span>
@@ -238,11 +240,14 @@ chatNamespace.on("online", (data) => {
     if (roomNumber === user.roomNumber) {
       onlineUsers.innerHTML += `
             <li>
+            
               <button type="button" class="btn btn-light upperOnUser mx-2" data-toggle="modal" data-target="#pvChat" data-id="${
                 user.id
               }" data-client="${user.name}" ${
         user.id === chatNamespace.id ? "disabled" : ""
       }>
+    <i class="ri-circle-fill" style="color:  rgb(71 255 71); position: relative; left: 2px; font-size:9px;"></i>
+
                 ${user.name}
                 <span class="badge badge-success"></span>
               </button>
@@ -277,16 +282,19 @@ setTimeout(() => {
 // Define emoji options
 const emojiOptions = `
   <div class="emoji-dropdown">
-    <button class="emoji-option" data-reaction="love">❤️</button>
+  <button class="emoji-option" data-reaction="haha">😂</button>
+  <button class="emoji-option" data-reaction="love">❤️</button>
+  <button class="emoji-option" data-reaction="kiss">💋</button>
+    <button class="emoji-option" data-reaction="cry">😩</button>
     <button class="emoji-option" data-reaction="sad">😢</button>
-    <button class="emoji-option" data-reaction="happy">😊</button>
-    <button class="emoji-option" data-reaction="haha">😂</button>
   </div>
 `;
 
 // Add reaction dropdown to messages
 const reactionButtons = `
-  <button class="btn btn-secondary btn-sm react-btn">React</button>
+  <button class="btn btn-secondary btn-sm react-btn">React 
+<i class="ri-emoji-sticker-line"></i>
+  </button>
   <div class="reaction-options" style="display: none;">
     ${emojiOptions}
   </div>
@@ -302,18 +310,18 @@ function addMessageToChat(data) {
 
   const messageElement = `
     <li class="alert msgBox" data-message-id="${data.messageId}">
-      <span class="nameDateBg whiteClr font-weight-normal" style="font-size: 14pt">
+      <span class="nameDateBg whiteClr font-weight-normal">
         <i class="ri-user-line"></i> ${data.nickname}
-        <span class="whiteClr font-italic font-weight-light m-2" style="font-size: 11pt">${data.date} 
+        <span class="whiteClr font-italic time font-weight-light m-2" >${data.date} 
         <i class="ri-time-line"></i>
         </span>
       </span>
       ${replyTag}
       <p class="pzero message-content" style="font-family: 'Dosis', sans-serif">
         <i class="ri-chat-3-line"></i> ${data.message}
-      </p>
+        <span class="reactions" data-message-id="${data.messageId}"></span>
+        </p>
       ${reactionButtons} <!-- Add reaction dropdown here -->
-      <div class="reactions" data-message-id="${data.messageId}"></div>
       <button class="btn d-flex btn-outline-secondary btn-sm replyBtn" data-message-id="${data.messageId}" data-reply-content="${data.message}">Reply <i class="ri-reply-line"></i> </button> <!-- Ensure reply button is here -->
     </li>`;
 
@@ -396,18 +404,22 @@ chatNamespace.on("reaction", (data) => {
 
 function getEmoji(reaction) {
   switch (reaction) {
-    case "love":
-      return "❤️";
-    case "sad":
-      return "😢";
-    case "happy":
-      return "😊";
     case "haha":
       return "😂";
+    case "love":
+      return "❤️";
+    case "kiss":
+      return "💋";
+    case "cry":
+      return "😩";
+    case "sad":
+      return "😢";
     default:
       return "";
   }
 }
+
+
 function addMessageToChat(data) {
   const replyTag = data.replyTo
     ? `<div class="replyBg">
@@ -418,18 +430,18 @@ function addMessageToChat(data) {
 
   const messageElement = `
     <li class="alert msgBox" data-message-id="${data.messageId}">
-      <span class="nameDateBg whiteClr font-weight-normal" style="font-size: 14pt">
+      <span class="nameDateBg whiteClr font-weight-normal">
         <i class="ri-user-line"></i> ${data.nickname}
-        <span class="whiteClr font-italic font-weight-light m-2" style="font-size: 11pt">${data.date} 
+        <span class="whiteClr time font-italic font-weight-light m-2">${data.date} 
         <i class="ri-time-line"></i>
         </span>
       </span>
       ${replyTag}
       ${data.image ? `<img src="${data.image}" alt="${data.name}" style="max-width: 20%; max-height: 200px;" />` : `<p class="pzero message-content" style="font-family: 'Dosis', sans-serif">
         <i class="ri-chat-3-line"></i> ${data.message}
+        <span class="reactions" data-message-id="${data.messageId}"></span>
       </p>`}
       ${reactionButtons}
-      <div class="reactions" data-message-id="${data.messageId}"></div>
       <button class="btn d-flex btn-outline-secondary btn-sm replyBtn" data-message-id="${data.messageId}" data-reply-content="${data.message}">Reply <i class="ri-reply-line"></i> </button>
     </li>`;
 
@@ -442,3 +454,8 @@ function addMessageToChat(data) {
 
   chatContainer.scrollTop = chatContainer.scrollHeight - chatContainer.clientHeight;
 }
+
+
+
+
+
