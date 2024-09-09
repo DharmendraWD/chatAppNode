@@ -19,9 +19,12 @@
 <body class="rtl ">
   <div class="container-fluid">
     
-        <div class="alert upperAlert alert-light alert-dismissible fade show" role="alert">
-     Made with ❤️ to talk with my  <strong>Janu</strong> 
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="alert upperAlert alert-light alert-dismissible fade show" role="alert" style="padding: 0 !important; margin: 0;">
+<p>Made with <span style="color: red;">❤</span> 
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="padding: 0; position: relative;"></button>
+
+</p>
+
     </div>
 
     <div class="navParent w-100">
@@ -31,26 +34,35 @@
         <span id="span2 " class="bar"></span>
       </div>
       <ul id="online-users-list" class="list-group list-group-horizontal list-unstyled overflow-auto"></ul>
+      
     </div>
+
+
     <div class="row">
-      <div id="chatContainer" class="col-12" style="position: absolute; height: 88%; overflow-y: scroll">
+      <div id="chatContainer" class="col-12" style="position: absolute; overflow-y: scroll">
         <ul id="chat-box" class="mt-2 list-unstyled"></ul>
-        <div id="feedback"></div>
-   
+        
       </div>
+      
+      <div class="d-flex justify-content-center chatfrmParent">
+        <form id="chatForm" class="form-group chatMess w-50 mb-0">
+          <div class="input-group" style="gap:10px">
+            <div class="messageBoxParent">
+              <div class="msgBxParentChild">
+              <div id="feedback"></div>
 
-
-           <div class="d-flex justify-content-center chatfrmParent">
-          <form id="chatForm" class="form-group chatMess w-50 mb-0">
-            <div class="input-group" style="gap:10px">
               <input type="text" name="message" id="messageInput" class="form-control textarea" placeholder="Message text..." />
-
-
               <input type="file" id="imageInput" accept="image/*" style="display: none;" />
-              <div class="input-group-prepend d-flex position-relative" style="gap:2px">
-                <button type="button" id="sendImageButton" class="btn btn-secondary"><i class="fas fa-image"></i></button>
-                <button type="submit" class="form-control btnameDateBg whiteClr font-weight-normaln-primary sendBtn">Send</button>
               </div>
+              <div class="input-group-prepend d-flex position-relative" style="gap:2px">
+                <button type="button" id="sendImageButton" class="btn btn-secondary" style="display: none;"><i class="fas fa-image"></i></button>
+                <button type="submit" class="form-control btnameDateBg whiteClr font-weight-normaln-primary sendBtn">Send</button>
+              
+              
+              
+              </div>
+</div>
+
             </div>
           </form>
         </div>

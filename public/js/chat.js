@@ -3,7 +3,7 @@ const chatNamespace = io("/chat", {
     token: 123456,
   },
 });
-
+const socket = io(); // Initialize Socket.IO client
 
 
 // Query DOM
@@ -32,6 +32,7 @@ let socketId;
 chatNamespace.emit("login", { nickname, roomNumber });
 
 chatForm.addEventListener("submit", (e) => {
+      messageInput.focus();
   e.preventDefault();
   if (messageInput.value) {
     chatNamespace.emit("chat message", {
@@ -48,6 +49,11 @@ chatForm.addEventListener("submit", (e) => {
     replyToMessageImage = ""; // Reset reply image
   }
 });
+
+chatBox.addEventListener("click", ()=>{
+          messageInput.focus();
+})
+
 
 sendImageButton.addEventListener("click", () => {
   imageInput.click(); // Trigger the file input click
@@ -85,6 +91,8 @@ pvChatForm.addEventListener("submit", (e) => {
   $("#pvChat").modal("hide");
   pvMessageInput.value = "";
 });
+
+
 
 // Listening
 chatNamespace.on("chat message", (data) => {
@@ -219,12 +227,63 @@ chatNamespace.on("image message", (data) => {
 messageInput.addEventListener("keypress", () => {
   chatNamespace.emit("typing", { name: nickname, roomNumber });
 });
+// --------------------------------
+
+
+let typingTimeout; // Store timeout reference
 
 chatNamespace.on("typing", (data) => {
   if (roomNumber === data.roomNumber) {
-    feedback.innerHTML = data;
+    feedback.innerHTML = `
+    <p class="typingtyping" >typing...</p>
+<div style="display:flex;">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+    `;
+
+    // Clear any existing timeout to prevent clearing too soon
+    clearTimeout(typingTimeout);
+
+    // Set a timeout to clear the typing message
+    typingTimeout = setTimeout(() => {
+      feedback.innerHTML = "";
+    }, 2000); // Adjust timeout duration as needed
   }
 });
+
+chatNamespace.on("stop typing", (data) => {
+  if (roomNumber === data.roomNumber) {
+    clearTimeout(typingTimeout);
+    feedback.innerHTML = "";
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 chatNamespace.on("pvChat", (data) => {
   $("#pvChat").modal("show");
@@ -346,6 +405,7 @@ chatNamespace.on("image message", (data) => {
 // Handle reaction dropdown and emoji selection
 chatBox.addEventListener("click", (e) => {
   if (e.target.classList.contains("react-btn")) {
+
     const options = e.target.nextElementSibling;
     options.style.display = options.style.display === "none" ? "block" : "none";
   }

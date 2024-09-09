@@ -61,6 +61,7 @@ body {
     font-size: 16px;
     cursor: pointer;
     z-index: 1; /* Ensure this button is on top */
+    width: auto;
 }
 
 /* Styling for the sliding button */
@@ -84,9 +85,10 @@ body {
       display: flex;
     flex-direction: column;
 }
-/* #chatContainer{
-  background-image: linear-gradient(to top, #9f6c32, #70e7ff);
-} */
+#chatContainer{
+  /* background-color: red; */
+  bottom: 6%;
+}
 .whiteClr{
   color: white;
 }
@@ -256,12 +258,97 @@ input::placeholder {
 .navParent {
   padding: 0 !important;
     max-height: 45px;
+    position: fixed;
 }
 
 
 /* ----------- */
+.messageBoxParent{
+      display: flex;
+    width: 100%;
+    justify-content: center;
+}
+#feedback{
+  margin: 0 !important;
+      color: #ffffff;
+          position: absolute;
+    top: -23px;
+        display: flex;
+    justify-content: space-between;
+    width: 60px;
+    align-items: center;
+}
+
+.typingtyping{
+  margin: 0 !important;
+}
 
 
+@keyframes typing {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+        color: white;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+        color: rgb(37, 255, 244);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+        color: yellow;
+    }
+} 
+
+.dot {
+    width:13px !important;
+    height: 13px !important;
+    background-color: #0aff12;
+    border-radius: 50%;
+    animation: typing 1.5s infinite;
+    display: block;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes typing {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+.msgBxParentChild{
+    width: 90%;
+}
+.alert-dismissible {
+    padding-left: 1re !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+.alert-dismissible p{
+margin: 0 !important;
+padding: 0 !important;
+}
   /* CSS for viewports 700px and below */
 @media (max-width: 800px) {
   #chatForm {
@@ -272,8 +359,8 @@ background-color: #000014;
 padding: 0 !important;
   }
   #chat-box{
-        padding-bottom: 12px;
-margin-top: 0px !important;
+    padding-top: 4px;
+margin-top: 10px !important;
 padding-left: 0;
   }
   .msgBox{
@@ -293,8 +380,6 @@ padding-left: 0;
   }
   .nameDateBg {
         font-size: 10pt;
-        border-radius: 0px 15px;
-                background-color: #000000;
                     padding: 0 2px;
   }
   .time{
@@ -305,13 +390,16 @@ padding-left: 0;
     right: 0;
   }
   .msgBox{
-      margin-bottom: 7px;
+      margin-bottom: 0;
       position: relative;
     padding-bottom: 21px;
 }
 #chatContainer{
       padding-left: 4px;
     padding-right: 4px;
+    color: white;
+    height: 50%;
+    padding-bottom: 13px;
 }
 .message-content {
     padding: 0px 6px !important;

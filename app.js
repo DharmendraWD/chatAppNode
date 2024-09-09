@@ -7,6 +7,10 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
+const chatNamespace = io.of("/chat");
+
+
+
 // Static Folder
 app.use(express.static("public"));
 
@@ -72,11 +76,38 @@ chatNameSpace.on("connection", (socket) => {
     chatNameSpace.to(data.roomNumber).emit("image message", data);
   });
 
-  socket.on("typing", (data) => {
-    socket.broadcast
-      .in(data.roomNumber)
-      .emit("typing", `${data.name} is typing...`);
+  // -----------------------------------------------------------
+  // TYPING INDICATOR LOGIC   TYPING INDICATOR LOGIC    TYPING INDICATOR LOGIC  TYPING INDICATOR LOGIC
+  const TYPING_TIMER = 2000; // Time in milliseconds
+
+  chatNameSpace.on("connection", (socket) => {
+    let typingTimer;
+
+    // Handle typing notifications
+    socket.on("typing", (data) => {
+      clearTimeout(typingTimer); // Clear any existing timer
+
+      // Broadcast typing event
+      socket.broadcast.emit("typing", data);
+
+      // Set a timer to emit a stop typing event after a delay
+      typingTimer = setTimeout(() => {
+        socket.broadcast.emit("stop typing", data);
+      }, TYPING_TIMER);
+    });
+
+    // Handle stop typing notifications
+    socket.on("stop typing", (data) => {
+      clearTimeout(typingTimer); // Clear any existing timer
+      socket.broadcast.emit("stop typing", data);
+    });
+
+    // Existing event handlers here
   });
+  // TYPING INDICATOR LOGIC END | TYPING INDICATOR LOGIC END 
+
+
+
 
   socket.on("login", (data) => {
     users.push({
