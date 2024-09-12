@@ -318,7 +318,6 @@ input::placeholder {
 .dot:nth-child(3) {
     animation-delay: 0.6s;
 }
-
 @keyframes typing {
     0% {
         transform: scale(1);
@@ -349,6 +348,66 @@ input::placeholder {
 margin: 0 !important;
 padding: 0 !important;
 }
+/* ------------------------------------ */
+/* sent message layout set  */
+.sent-message{
+width:100% !important;
+background: #05004700 !important;
+width: 71% !important;
+background: #050047 !important;
+    min-width: 51% !important;
+   max-width: 100% !important;
+    float: right !important;
+    align-self: end !important;
+}
+.sent-message .time{
+margin: 0 !important;
+float: left;
+}
+.sent-message .replyBtn {
+    right: 0 !important;
+}
+.sent-message .react-btn{
+    align-self: end !important;
+}
+.sent-message .nameDateBg {
+    align-self: end;
+    align-items: center;
+}
+
+.sent-message .pzero{
+    align-self: end !important;
+}
+/* sent message layout set end  */
+
+
+/* received message layout set  */
+.received-message{
+   width: 71% !important;
+    background-color: #000000 !important;
+    float: left !important;
+    align-self: flex-start !important;
+}
+.received-message .time{
+margin: 0 !important;
+}
+.reaction{
+  transition: 2s ease-in-out;
+}
+/* .received-message .replyBtn {
+    left: 146px !important;
+} */
+/* .received-message .react-btn{
+    align-self: end !important;
+} */
+/* .received-message .nameDateBg {
+    align-self: end;
+    align-items: center;
+}
+
+.received-message .pzero{
+    align-self: end !important;
+} */
   /* CSS for viewports 700px and below */
 @media (max-width: 800px) {
   #chatForm {

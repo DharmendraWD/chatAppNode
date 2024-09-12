@@ -455,17 +455,16 @@ function addMessageToChat(data) {
   const messageClass = isSentByCurrentUser
     ? "sent-message"
     : "received-message";
-  const senderName = isSentByCurrentUser ? "You" : data.nickname; // Use "You" for current user's messages
 
   const replyTag = data.replyTo
     ? `<div class="replyBg">
-        <strong>Replying to:</strong>
-        ${
-          data.replyImage
-            ? `<img src="${data.replyImage}" alt="reply image" style="max-width: 50px; max-height: 50px; margin-right: 10px;" />`
-            : data.replyContent
-        }
-      </div>`
+          <strong>Replying to:</strong>
+          ${
+            data.replyImage
+              ? `<img src="${data.replyImage}" alt="reply image" style="max-width: 50px; max-height: 50px; margin-right: 10px;" />`
+              : data.replyContent
+          }
+        </div>`
     : "";
 
   const messageElement = `
@@ -473,10 +472,11 @@ function addMessageToChat(data) {
     data.messageId
   }">
       <span class="nameDateBg whiteClr font-weight-normal">
-        <i class="ri-user-line"></i> ${senderName}
-        <span class="whiteClr time font-italic font-weight-light m-2">
-          ${data.date} 
-          <i class="ri-time-line"></i>
+        <i class="ri-user-line"></i> ${data.nickname}
+        <span class="whiteClr time font-italic font-weight-light m-2">${
+          data.date
+        } 
+        <i class="ri-time-line"></i>
         </span>
       </span>
       ${replyTag}
@@ -484,16 +484,16 @@ function addMessageToChat(data) {
         data.image
           ? `<img src="${data.image}" alt="${data.name}" style="max-width: 20%; max-height: 200px;" />`
           : `<p class="pzero message-content" style="font-family: 'Dosis', sans-serif">
-              <i class="ri-chat-3-line"></i> ${data.message}
-              <span class="reactions" data-message-id="${data.messageId}"></span>
-            </p>`
+        <i class="ri-chat-3-line"></i> ${data.message}
+        <span class="reactions" data-message-id="${data.messageId}"></span>
+      </p>`
       }
       ${reactionButtons}
       <button class="btn d-flex btn-outline-secondary btn-sm replyBtn" data-message-id="${
         data.messageId
-      }" data-reply-content="${data.message}">
-        Reply <i class="ri-reply-line"></i> 
-      </button>
+      }" data-reply-content="${
+    data.message
+  }">Reply <i class="ri-reply-line"></i> </button>
     </li>`;
 
   const existingMessage = chatBox.querySelector(
