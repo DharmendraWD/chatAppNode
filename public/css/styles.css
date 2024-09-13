@@ -5,11 +5,7 @@ html, body{
 
 body {
   font-family:  "Dosis", sans-serif;
-  background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)), url('./journal-2850091_1280.jpg');
-  background-size: cover; /* Ensures the image covers the entire viewport */
-  background-position: center; /* Centers the image */
-  background-repeat: no-repeat; /* Prevents the image from repeating */
-  background-attachment: fixed; /* Keeps the background image fixed while scrolling */
+    background: #000000c2;
   margin: 0;
   height: 100%;
   padding: 0;
@@ -80,11 +76,11 @@ body {
     z-index: 99999999 !important;
 }
 
-.msgBox{
+/* .msgBox{
     border-bottom: 1px solid#ededede0;
       display: flex;
     flex-direction: column;
-}
+} */
 #chatContainer{
   /* background-color: red; */
   bottom: 6%;
@@ -95,19 +91,14 @@ body {
 .message-content{
     max-width: fit-content;
         border-radius: 13px;
-        background: #d7d7d740;
-        color:#cdfff4;
-    padding: 2px 12px !important;
     text-align: justify;
-        border-radius: 10px;
+        position: relative;
+    top: 8px;
 }
 .nameDateBg{
       /* background: linear-gradient(rgb(13 14 14 / 70%), rgb(41 40 77 / 90%)), url(images/2.jpg); */
           padding: 0 1px 3px 11px;
           width: max-content;
-}
-.pzero{
-    color: white;
 }
 .navParent{
   border-bottom: 1px solid #f7fcff6b;
@@ -119,7 +110,11 @@ body {
       border: none;
     border-bottom: 1px solid #ffffff73;
 }
-
+.message-content-main{
+      background: #dddddd17;
+    padding: 11px 5px 5px 5px;
+    border-radius: 20px;
+}
 input::placeholder {
             color: rgb(255, 255, 255) !important; /* Change this to your desired color */
             opacity: 1;  /* Ensures that the placeholder color is fully opaque */
@@ -130,7 +125,10 @@ input::placeholder {
         input:focus::placeholder {
             color: rgb(112, 109, 109) !important; /* Change this to your desired color when focused */
         }
-
+.message-btns{
+  display: flex;
+    justify-content: space-between;
+}
 .upperOnUser{
   border-radius: 0px !important;
   border: none !important;
@@ -142,13 +140,16 @@ input::placeholder {
 
 }
 .replyBg{
-        background: #efc2e726;
-      color: white;
-        max-width: fit-content;
-        border-radius: 6px;
+    color: white;
+    max-width: fit-content;
+    border-radius: 6px;
     padding: 2px 12px !important;
-        margin-left: 54px;
+    margin-left: 54px;
     margin-bottom: 2px;
+    line-height: 1.1;
+}
+strong{
+  color: #ff7777;
 }
 .ri-user-line{
   color: #13ff27ab;
@@ -171,14 +172,9 @@ input::placeholder {
   box-shadow: var(--docsearch-key-shadow);
   color: var(--key-text-color);
   cursor: pointer;
-      margin-top: 4px;
   text-align: center;
-  display: inline-block;
   font-weight: bold;
   user-select: none;
-  position: absolute;
-    right: 146px;
-    bottom: 0px;
     background: transparent;
     height: 29px;
     border: none !important;
@@ -201,7 +197,6 @@ input::placeholder {
     display: flex;
     gap: 5px;
     position: absolute;
-    background-color: white;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 5px;
@@ -236,9 +231,6 @@ input::placeholder {
     margin-right: 10px;
   }
 
-  .replyBtn {
-    margin-top: 10px;
-  }
 
   .react-btn{
         width: fit-content;
@@ -351,21 +343,20 @@ padding: 0 !important;
 /* ------------------------------------ */
 /* sent message layout set  */
 .sent-message{
-width:100% !important;
-background: #05004700 !important;
-width: 71% !important;
-background: #050047 !important;
-    min-width: 51% !important;
-   max-width: 100% !important;
     float: right !important;
     align-self: end !important;
+          display: flex;
+    flex-direction: column;
+        min-width: 190px;
+    max-width: 90%;
+    margin-right: 14px;
+}
+.sent-message .pzero{
+color: #4ebeff !important;
 }
 .sent-message .time{
 margin: 0 !important;
 float: left;
-}
-.sent-message .replyBtn {
-    right: 0 !important;
 }
 .sent-message .react-btn{
     align-self: end !important;
@@ -378,15 +369,33 @@ float: left;
 .sent-message .pzero{
     align-self: end !important;
 }
+.sent-message .nameDateBg {
+    display: flex !important;
+    gap: 3px !important;
+
+}
+.sent-message .emoji-dropdown {
+    left: 50%;
+    transform: translate(-70%, 0%);
+    top: 32px;
+  }
+
 /* sent message layout set end  */
 
 
 /* received message layout set  */
 .received-message{
-   width: 71% !important;
-    background-color: #000000 !important;
     float: left !important;
     align-self: flex-start !important;
+          display: flex;
+    flex-direction: column;
+        min-width: 190px;
+    max-width: 90%;
+    margin-left: 14px;
+
+}
+.received-message .pzero{
+color: white;
 }
 .received-message .time{
 margin: 0 !important;
@@ -394,12 +403,10 @@ margin: 0 !important;
 .reaction{
   transition: 2s ease-in-out;
 }
-/* .received-message .replyBtn {
-    left: 146px !important;
-} */
-/* .received-message .react-btn{
+
+.received-message .react-btn{
     align-self: end !important;
-} */
+}
 /* .received-message .nameDateBg {
     align-self: end;
     align-items: center;
@@ -409,45 +416,46 @@ margin: 0 !important;
     align-self: end !important;
 } */
   /* CSS for viewports 700px and below */
-@media (max-width: 800px) {
+/* @media (max-width: 800px) { */
   #chatForm {
     width: 95% !important;
   }
   .chatfrmParent{
 background-color: #000014;
 padding: 0 !important;
+
   }
   #chat-box{
     padding-top: 4px;
 margin-top: 10px !important;
 padding-left: 0;
+    display: flex;
+    flex-direction: column;
   }
   .msgBox{
-        margin: 3px 0 0 0;
-            border: 1px solid #d8fdff;
-    border-radius: 3px 19px;
+    margin: 9px 0;
     padding-top: 2px !important;
       padding-right: 5px;
     padding-left: 5px !important
   }
   .pzero {
         margin-bottom: 2px;
+            line-height: 1.1;
   }
   .react-btn{
     padding: 0 7px;
-    line-height: 1;
+    line-height: 1.1;
   }
   .nameDateBg {
         font-size: 10pt;
-                    padding: 0 2px;
+      position: absolute;
+    top: 3px;
+    padding: 0 24px;
   }
   .time{
     font-size: 8pt;
   }
-  .replyBtn{
-        position: absolute;
-    right: 0;
-  }
+
   .msgBox{
       margin-bottom: 0;
       position: relative;
@@ -458,23 +466,21 @@ padding-left: 0;
     padding-right: 4px;
     color: white;
     height: 50%;
-    padding-bottom: 13px;
 }
-.message-content {
+/* .message-content {
     padding: 0px 6px !important;
-}
-.react-btn{
-      position: absolute;
-    left: 0;
-    bottom: 4px;
-}
+} */
 .container-fluid{
 padding: 0 !important;
 }
 .upperOnUser {
-  line-height: 1;
+  line-height: 1.1;
 }
 .navParent{
   background-color:  #000014;
 }
-}
+/* } */
+/* 
+.received-message .message-content {
+       top: 3px !important;
+} */

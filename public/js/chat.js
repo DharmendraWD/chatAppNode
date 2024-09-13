@@ -459,7 +459,7 @@ function addMessageToChat(data) {
 
   const replyTag = data.replyTo
     ? `<div class="replyBg">
-        <strong>Replying to:</strong>
+        <strong> ${senderName} Replying to:</strong>
         ${
           data.replyImage
             ? `<img src="${data.replyImage}" alt="reply image" style="max-width: 50px; max-height: 50px; margin-right: 10px;" />`
@@ -472,28 +472,42 @@ function addMessageToChat(data) {
     <li class="alert msgBox ${messageClass}" data-message-id="${
     data.messageId
   }">
-      <span class="nameDateBg whiteClr font-weight-normal">
+      ${replyTag}
+      ${
+        data.image
+          ? `<img src="${data.image}" alt="${data.name}" style="max-width: 20%; max-height: 200px;" />`
+          : `
+          <div class="message-content-main">
+          <div>
+                  <span class="nameDateBg whiteClr font-weight-normal">
         <i class="ri-user-line"></i> ${senderName}
         <span class="whiteClr time font-italic font-weight-light m-2">
           ${data.date} 
           <i class="ri-time-line"></i>
         </span>
       </span>
-      ${replyTag}
-      ${
-        data.image
-          ? `<img src="${data.image}" alt="${data.name}" style="max-width: 20%; max-height: 200px;" />`
-          : `<p class="pzero message-content" style="font-family: 'Dosis', sans-serif">
+
+          <p class="pzero message-content" style="font-family: 'Dosis', sans-serif">
               <i class="ri-chat-3-line"></i> ${data.message}
               <span class="reactions" data-message-id="${data.messageId}"></span>
-            </p>`
-      }
+            </p>
+
+
+            </div>
+
+            <div class="message-btns">
       ${reactionButtons}
       <button class="btn d-flex btn-outline-secondary btn-sm replyBtn" data-message-id="${
         data.messageId
       }" data-reply-content="${data.message}">
         Reply <i class="ri-reply-line"></i> 
       </button>
+            </div>
+            </div>
+
+            `
+      }
+
     </li>`;
 
   const existingMessage = chatBox.querySelector(
@@ -546,3 +560,10 @@ chatNamespace.on("reaction", (data) => {
 });
 
 
+        // messageInput.addEventListener('focus', () => {
+        //    chatContainer.style.background="red"
+        //   });
+          
+        //   messageInput.addEventListener('blur', () => {
+        //   chatContainer.style.background="green"
+        // });
