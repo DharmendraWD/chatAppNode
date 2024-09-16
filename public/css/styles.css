@@ -2,14 +2,19 @@
 html, body{
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
-
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
 body {
   font-family:  "Dosis", sans-serif;
-    background: #000000c2;
+    background: #f6f6f6;
   margin: 0;
   height: 100%;
   padding: 0;
   overflow: hidden;
+  max-height: 100vh;
 }
 
 /* .container-fluid {
@@ -18,7 +23,6 @@ body {
 
 .form-signin {
   width: 100%;
-  max-width: 330px;
   padding: 15px;
   margin: auto;
 }
@@ -82,8 +86,16 @@ body {
     flex-direction: column;
 } */
 #chatContainer{
-  /* background-color: red; */
-  bottom: 6%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f6f6f6;
+    /* width: 400px; */
+    /* height: 600px; */
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    bottom: 43px;
+    max-height: 40vh;
 }
 .whiteClr{
   color: white;
@@ -110,11 +122,11 @@ body {
       border: none;
     border-bottom: 1px solid #ffffff73;
 }
-.message-content-main{
+/* .message-content-main{
       background: #dddddd17;
     padding: 11px 5px 5px 5px;
     border-radius: 20px;
-}
+} */
 input::placeholder {
             color: rgb(255, 255, 255) !important; /* Change this to your desired color */
             opacity: 1;  /* Ensures that the placeholder color is fully opaque */
@@ -165,19 +177,15 @@ strong{
   border: none !important;
 }
 .replyBtn{
-      width: min-content;
-      /* From Uiverse.io by pipic1 */ 
-  --key-text-color: #969faf;
-  border-radius: 3px;
-  box-shadow: var(--docsearch-key-shadow);
-  color: var(--key-text-color);
-  cursor: pointer;
-  text-align: center;
-  font-weight: bold;
-  user-select: none;
-    background: transparent;
+    width: min-content;
+    --key-text-color: #969faf;
+    box-shadow: var(--docsearch-key-shadow);
+    color: var(--key-text-color);
+    cursor: pointer;
+    text-align: center;
     height: 29px;
     border: none !important;
+    font-size: 14px;
 
 }
 .replyto{
@@ -216,10 +224,6 @@ strong{
     position: relative;
   }
 
-  .react-btn {
-    cursor: pointer;
-    background-color: #a70000cc !important;
-  }
 
   .reactions {
     margin-top: 5px;
@@ -232,10 +236,6 @@ strong{
   }
 
 
-  .react-btn{
-        width: fit-content;
-        border-radius: 0 14px 0 18px;
-  }
   .reaction{
     color: #e1ff00;
     font-size: 22px;
@@ -251,6 +251,7 @@ strong{
   padding: 0 !important;
     max-height: 45px;
     position: fixed;
+        z-index: 99999;
 }
 
 
@@ -342,7 +343,7 @@ padding: 0 !important;
 }
 /* ------------------------------------ */
 /* sent message layout set  */
-.sent-message{
+/* .sent-message{
     float: right !important;
     align-self: end !important;
           display: flex;
@@ -350,9 +351,32 @@ padding: 0 !important;
         min-width: 190px;
     max-width: 90%;
     margin-right: 14px;
+} */
+.received-message, .sent-message {
+    list-style: none;
+padding: 13px 8px 0 8px;
+    margin: 12px;
+    /* max-width: 250px; */
+        max-width: 80%;
+    font-size: 18px;
+    word-wrap: break-word;
+    line-height: 1;
+}
+.sent-message{
+    border-radius: 20px 20px 0px 20px;
+    align-self: flex-end;
+    background-color: #2d2d2d;
+    box-shadow: 2px 2px 4px #dcdcdc;
+    color: #f6f6f6;
+}
+.sent-message .ri-chat-3-line, .sent-message .ri-user-line{
+    color: #c7ff9cdb !important;
+}
+.received-message .ri-chat-3-line, .received-message .ri-user-line{
+    color: #5763ff !important;
 }
 .sent-message .pzero{
-color: #4ebeff !important;
+color: #ffffff !important;
 }
 .sent-message .time{
 margin: 0 !important;
@@ -384,7 +408,7 @@ float: left;
 
 
 /* received message layout set  */
-.received-message{
+/* .received-message{
     float: left !important;
     align-self: flex-start !important;
           display: flex;
@@ -393,9 +417,16 @@ float: left;
     max-width: 90%;
     margin-left: 14px;
 
+} */
+.received-message {
+    border-radius: 20px 20px 20px 0px;
+    align-self: flex-start;
+    background-color: #fff;
+    box-shadow: -2px 2px 4px #dcdcdc;
 }
-.received-message .pzero{
-color: white;
+
+.received-message .pzero {
+    color: #000000;
 }
 .received-message .time{
 margin: 0 !important;
@@ -407,11 +438,10 @@ margin: 0 !important;
 .received-message .react-btn{
     align-self: end !important;
 }
-/* .received-message .nameDateBg {
-    align-self: end;
-    align-items: center;
+ .received-message .nameDateBg {
+color: black;
 }
-
+/*
 .received-message .pzero{
     align-self: end !important;
 } */
@@ -432,19 +462,22 @@ padding-left: 0;
     display: flex;
     flex-direction: column;
   }
-  .msgBox{
+  /* .msgBox{
     margin: 9px 0;
     padding-top: 2px !important;
       padding-right: 5px;
     padding-left: 5px !important
-  }
+  } */
   .pzero {
         margin-bottom: 2px;
             line-height: 1.1;
   }
   .react-btn{
     padding: 0 7px;
-    line-height: 1.1;
+width: 35px;
+    text-align: left;
+border: none !important;
+background-color: transparent !important;
   }
   .nameDateBg {
         font-size: 10pt;
@@ -456,17 +489,11 @@ padding-left: 0;
     font-size: 8pt;
   }
 
-  .msgBox{
+  /* .msgBox{
       margin-bottom: 0;
       position: relative;
     padding-bottom: 21px;
-}
-#chatContainer{
-      padding-left: 4px;
-    padding-right: 4px;
-    color: white;
-    height: 50%;
-}
+} */
 /* .message-content {
     padding: 0px 6px !important;
 } */
@@ -484,3 +511,21 @@ padding: 0 !important;
 .received-message .message-content {
        top: 3px !important;
 } */
+
+
+
+
+
+.nameInput{
+    width: 50%;
+    margin: 0 auto;
+}
+#nicknameForm h1, #nicknameForm label{
+    font-size: 2rem;
+}
+.enterbtninsdie{
+  width: 50%;
+}
+select input{
+  font-size: 2rem;
+}

@@ -351,8 +351,7 @@ const emojiOptions = `
 
 // Add reaction dropdown to messages
 const reactionButtons = `
-  <button class="btn btn-secondary btn-sm react-btn">React 
-<i class="ri-emoji-sticker-line"></i>
+  <img src="./reacticon.png" class="btn btn-secondary btn-sm react-btn">
   </button>
   <div class="reaction-options" style="display: none;">
     ${emojiOptions}

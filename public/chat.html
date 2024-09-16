@@ -17,17 +17,16 @@
 
 </head>
 <body class="rtl ">
-  <div class="container-fluid">
     
-        <div class="alert upperAlert alert-light alert-dismissible fade show" role="alert" style="padding: 0 !important; margin: 0;">
+        <!-- <div class="alert upperAlert alert-light alert-dismissible fade show" role="alert" style="padding: 0 !important; margin: 0;">
 <p> it may not work right now because it's under development</p></span> 
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="padding: 0; position: relative;"></button>
 
 </p>
 
-    </div>
-
-    <div class="navParent w-100">
+    </div> -->
+<div class="main">
+    <div class="navParent w-100 name">
       <div class="bars">
         <span id="span1 " class="bar"></span>
         <span id="span3 " class="bar"></span>
@@ -37,8 +36,7 @@
       
     </div>
 
-    <div class="row">
-      <div id="chatContainer" class="col-12" style="position: absolute; overflow-y: scroll">
+      <div id="chatContainer" class="col-12">
         <ul id="chat-box" class="mt-2 list-unstyled"></ul>
         
       </div>
@@ -65,8 +63,7 @@
             </div>
           </form>
         </div>
-    </div>
-  </div>
+  
   <div class="modal fade" id="pvChat" tabindex="-1" aria-labelledby="pvChatModal" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -98,7 +95,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.min.js"></script>
   <script src="js/chat.js"></script>
 
-
+</div>
 
 </body>
 </html>
