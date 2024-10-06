@@ -54,7 +54,6 @@ chatBox.addEventListener("click", ()=>{
           messageInput.focus();
 })
 
-
 sendImageButton.addEventListener("click", () => {
   imageInput.click(); // Trigger the file input click
 });
@@ -124,7 +123,7 @@ chatNamespace.on("chat message", (data) => {
                             <p class=" pzero message-content" style="font-family:  "Dosis", sans-serif">
                             <i class="ri-chat-3-line"></i>
                             ${data.message}</p>
-                            <button class="btn d-flex btn-outline-secondary btn-sm replyBtn" data-message-id="${data.messageId}" data-reply-content="${data.message}">Reply <i class="ri-reply-line"></i> </button>
+                            <button class="d-flex btn-outline-secondary btn-sm replyBtn" data-message-id="${data.messageId}" data-reply-content="${data.message}">Reply <i class="ri-reply-line"></i> </button>
                           </li>`;
   chatContainer.scrollTop =
     chatContainer.scrollHeight - chatContainer.clientHeight;
@@ -165,7 +164,7 @@ chatNamespace.on("image message", (data) => {
                             </span>
                             ${replyTag}
                             <img src="${data.image}" alt="${data.name}" style="max-width: 20%; max-height: 200px;" />
-                            <button class="btn d-flex btn-outline-secondary btn-sm replyBtn" data-message-id="${data.messageId}" data-reply-content="${data.message}">Reply <i class="ri-reply-line"></i> </button>
+                            <button class="d-flex btn-outline-secondary btn-sm replyBtn" data-message-id="${data.messageId}" data-reply-content="${data.message}">Reply <i class="ri-reply-line"></i> </button>
 
                           </li>`;
   chatContainer.scrollTop =
@@ -208,7 +207,7 @@ chatNamespace.on("image message", (data) => {
       <img src="${data.image}" alt="${data.name}" style="max-width: 20%; max-height: 200px;" />
       ${reactionButtons}
       <div class="reactions" data-message-id="${data.messageId}"></div>
-      <button class="btn d-flex btn-outline-secondary btn-sm replyBtn" data-message-id="${data.messageId}" data-reply-content="${data.message}">Reply <i class="ri-reply-line"></i> </button>
+      <button class="d-flex btn-outline-secondary btn-sm replyBtn" data-message-id="${data.messageId}" data-reply-content="${data.message}">Reply <i class="ri-reply-line"></i> </button>
     </li>`;
 
   const existingMessage = chatBox.querySelector(
@@ -477,9 +476,9 @@ function addMessageToChat(data) {
           ? `<img src="${data.image}" alt="${data.name}" style="max-width: 20%; max-height: 200px;" />`
           : `
           <div class="message-content-main">
-          <div>
+          <div style="line-height:">
                   <span class="nameDateBg whiteClr font-weight-normal">
-        <i class="ri-user-line"></i> ${senderName}
+        <i class="ri-user-line"></i> ${senderName}:
         <span class="whiteClr time font-italic font-weight-light m-2">
           ${data.date} 
           <i class="ri-time-line"></i>

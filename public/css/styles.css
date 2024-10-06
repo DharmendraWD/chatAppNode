@@ -100,13 +100,6 @@ body {
 .whiteClr{
   color: white;
 }
-.message-content{
-    max-width: fit-content;
-        border-radius: 13px;
-    text-align: justify;
-        position: relative;
-    top: 8px;
-}
 .nameDateBg{
       /* background: linear-gradient(rgb(13 14 14 / 70%), rgb(41 40 77 / 90%)), url(images/2.jpg); */
           padding: 0 1px 3px 11px;
@@ -122,11 +115,9 @@ body {
       border: none;
     border-bottom: 1px solid #ffffff73;
 }
-/* .message-content-main{
-      background: #dddddd17;
-    padding: 11px 5px 5px 5px;
-    border-radius: 20px;
-} */
+.message-content-main{
+    font-size: 14px;
+}
 input::placeholder {
             color: rgb(255, 255, 255) !important; /* Change this to your desired color */
             opacity: 1;  /* Ensures that the placeholder color is fully opaque */
@@ -140,6 +131,7 @@ input::placeholder {
 .message-btns{
   display: flex;
     justify-content: space-between;
+    height: 21px;
 }
 .upperOnUser{
   border-radius: 0px !important;
@@ -151,6 +143,9 @@ input::placeholder {
     padding: 1px 3px !important;
 
 }
+.main{
+  height: 300px;
+}
 .replyBg{
     color: white;
     max-width: fit-content;
@@ -159,6 +154,7 @@ input::placeholder {
     margin-left: 54px;
     margin-bottom: 2px;
     line-height: 1.1;
+    font-size: 13px;
 }
 strong{
   color: #ff7777;
@@ -341,20 +337,10 @@ strong{
 margin: 0 !important;
 padding: 0 !important;
 }
-/* ------------------------------------ */
-/* sent message layout set  */
-/* .sent-message{
-    float: right !important;
-    align-self: end !important;
-          display: flex;
-    flex-direction: column;
-        min-width: 190px;
-    max-width: 90%;
-    margin-right: 14px;
-} */
+
 .received-message, .sent-message {
     list-style: none;
-padding: 13px 8px 0 8px;
+    padding: 1px 6px 1px 6px;
     margin: 12px;
     /* max-width: 250px; */
         max-width: 80%;
@@ -404,20 +390,6 @@ float: left;
     top: 32px;
   }
 
-/* sent message layout set end  */
-
-
-/* received message layout set  */
-/* .received-message{
-    float: left !important;
-    align-self: flex-start !important;
-          display: flex;
-    flex-direction: column;
-        min-width: 190px;
-    max-width: 90%;
-    margin-left: 14px;
-
-} */
 .received-message {
     border-radius: 20px 20px 20px 0px;
     align-self: flex-start;
@@ -441,12 +413,7 @@ margin: 0 !important;
  .received-message .nameDateBg {
 color: black;
 }
-/*
-.received-message .pzero{
-    align-self: end !important;
-} */
-  /* CSS for viewports 700px and below */
-/* @media (max-width: 800px) { */
+
   #chatForm {
     width: 95% !important;
   }
@@ -462,15 +429,9 @@ padding-left: 0;
     display: flex;
     flex-direction: column;
   }
-  /* .msgBox{
-    margin: 9px 0;
-    padding-top: 2px !important;
-      padding-right: 5px;
-    padding-left: 5px !important
-  } */
   .pzero {
         margin-bottom: 2px;
-            line-height: 1.1;
+            line-height: 1;
   }
   .react-btn{
     padding: 0 7px;
@@ -479,24 +440,11 @@ width: 35px;
 border: none !important;
 background-color: transparent !important;
   }
-  .nameDateBg {
-        font-size: 10pt;
-      position: absolute;
-    top: 3px;
+  .nameDateBg, .time{
+        font-size: 9px;
     padding: 0 24px;
   }
-  .time{
-    font-size: 8pt;
-  }
 
-  /* .msgBox{
-      margin-bottom: 0;
-      position: relative;
-    padding-bottom: 21px;
-} */
-/* .message-content {
-    padding: 0px 6px !important;
-} */
 .container-fluid{
 padding: 0 !important;
 }
@@ -506,12 +454,6 @@ padding: 0 !important;
 .navParent{
   background-color:  #000014;
 }
-/* } */
-/* 
-.received-message .message-content {
-       top: 3px !important;
-} */
-
 
 
 
